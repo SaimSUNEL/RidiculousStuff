@@ -45,6 +45,7 @@
             this.dosyaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dosyayaKaydetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negativeIndexFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -98,7 +99,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Klasör Seç...";
+            this.button1.Text = "Select Folder...";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -145,7 +146,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
-            this.button4.Text = "Ekle";
+            this.button4.Text = "Add";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -174,7 +175,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(157, 23);
             this.button6.TabIndex = 11;
-            this.button6.Text = "Listeye Ekle...";
+            this.button6.Text = "Add To List...";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -194,14 +195,14 @@
             this.dosyayaKaydetToolStripMenuItem,
             this.negativeIndexFileToolStripMenuItem});
             this.dosyaToolStripMenuItem.Name = "dosyaToolStripMenuItem";
-            this.dosyaToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.dosyaToolStripMenuItem.Text = "Dosya";
+            this.dosyaToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.dosyaToolStripMenuItem.Text = "File";
             // 
             // dosyayaKaydetToolStripMenuItem
             // 
             this.dosyayaKaydetToolStripMenuItem.Name = "dosyayaKaydetToolStripMenuItem";
-            this.dosyayaKaydetToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.dosyayaKaydetToolStripMenuItem.Text = "Dosyaya Kaydet...";
+            this.dosyayaKaydetToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.dosyayaKaydetToolStripMenuItem.Text = "Save To File....";
             this.dosyayaKaydetToolStripMenuItem.Click += new System.EventHandler(this.dosyayaKaydetToolStripMenuItem_Click);
             // 
             // negativeIndexFileToolStripMenuItem
@@ -211,11 +212,22 @@
             this.negativeIndexFileToolStripMenuItem.Text = "Negative Index File...";
             this.negativeIndexFileToolStripMenuItem.Click += new System.EventHandler(this.negativeIndexFileToolStripMenuItem_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(426, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "label2";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 405);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button5);
@@ -260,6 +272,7 @@
         private System.Windows.Forms.ToolStripMenuItem dosyaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dosyayaKaydetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem negativeIndexFileToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
     }
 }
 

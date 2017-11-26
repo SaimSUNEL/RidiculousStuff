@@ -15,7 +15,7 @@ namespace HaarObjectMarker
     public partial class Form1 : Form
     {
 
-        private Form2 form2;
+        private Form2 form2 = null;
 
         public Form1()
         {
@@ -33,6 +33,8 @@ namespace HaarObjectMarker
 
             }
 
+            //User might want to change the directory for the positive samples...
+            this.file_index = -1;
 
             form2 = new Form2( this.liste  );
         }
@@ -50,7 +52,12 @@ namespace HaarObjectMarker
                 return; 
             }
 
+
+            label2.Text = "Not Added";
             listBox1.Items.Clear();
+
+
+
 
 
             this.file_index += 1;
@@ -89,7 +96,7 @@ namespace HaarObjectMarker
                 MessageBox.Show("Please select and folder");
                 return;
             }
-
+            label2.Text = "Not Added";
             listBox1.Items.Clear();
 
             this.file_index -= 1;
@@ -316,9 +323,10 @@ namespace HaarObjectMarker
     
             }
 
-            MessageBox.Show( line );
-            liste.Add ( line ) ; 
+            //MessageBox.Show( line );
+            liste.Add ( line ) ;
 
+            label2.Text = "Added";
 
 
         }
@@ -347,6 +355,8 @@ namespace HaarObjectMarker
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label2.Text = "Not added";
+
 
         }
         private Negatives form3 = null;
@@ -369,6 +379,11 @@ namespace HaarObjectMarker
 
 
                 }
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }
