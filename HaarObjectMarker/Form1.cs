@@ -24,19 +24,35 @@ namespace HaarObjectMarker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            
-            if ( this.folderBrowserDialog1.ShowDialog() == DialogResult.OK )
+
+
+            if (this.folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = this.folderBrowserDialog1.SelectedPath;
                 this.files = Directory.GetFiles(textBox1.Text);
 
             }
+            else return;
 
             //User might want to change the directory for the positive samples...
             this.file_index = -1;
 
             form2 = new Form2( this.liste  );
+
+            int count = 0 ;
+            foreach (string file_name in this.files)
+            {
+                //MessageBox.Show(file_name);
+                if (file_name.Contains(".jpg") || file_name.Contains(".png") || file_name.Contains(".bmp")) count ++;
+                
+            }
+
+           // MessageBox.Show("File count : " + count);
+
+            this.unprocessed_count = count;
+            this.processed_count = 0;
+            label3.Text = "" + processed_count;
+            label4.Text = "" + unprocessed_count;
         }
 
         private String[] files;
@@ -45,12 +61,27 @@ namespace HaarObjectMarker
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+            
+            
+            
             if ( textBox1.Text == "" )
             {
 
                 MessageBox.Show("Please select and folder");
                 return; 
             }
+
+
+            if ( listBox1.Items.Count > 0  && label2.Text == "Not Added" )
+            {
+
+                MessageBox.Show("You have forgotten to add the line to list....");
+                return;
+
+            }
+
+
 
 
             label2.Text = "Not Added";
@@ -83,9 +114,29 @@ namespace HaarObjectMarker
             this.pictureBox1.Height = this.pictureBox1.Image.Height;
             this.label1.Text = file_name;
 
+            string[] id = file_name.Split('\\');
+            string fil = id[id.Length - 1];
+
+
+            temp_ = false;
+
+            foreach (string s in this.liste)
+            {
+                if (s.Contains(fil))
+                    temp_ = true;
+            }
+
+            if (temp_ == true )
+            {
+                this.label5.Text = "This file has been processed...";
+            }
+            else
+                this.label5.Text = "This file has not been processed...";
+
+
         }
 
-        
+        private bool temp_;
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -123,6 +174,24 @@ namespace HaarObjectMarker
             this.pictureBox1.Width = this.pictureBox1.Image.Width;
             this.pictureBox1.Height = this.pictureBox1.Image.Height;
             this.label1.Text = file_name;
+            
+            string[] id = file_name.Split('\\');
+            string fil = id[id.Length - 1];
+
+
+            temp_ = false;
+            foreach (string s in liste)
+                if (s.Contains(fil))
+                    temp_ = true;
+
+
+            if (temp_ == true )
+            {
+                this.label5.Text = "This file has been processed...";
+            }
+            else
+                this.label5.Text = "This file has not been processed...";
+
         }
 
        
@@ -292,12 +361,18 @@ namespace HaarObjectMarker
 
 
         private ArrayList liste = new ArrayList();
-
+        private int processed_count = 0, unprocessed_count = 0;
 
         private void button6_Click(object sender, EventArgs e)
         {
+            
+            if ( listBox1.Items.Count == 0 )
+            {
 
+                MessageBox.Show("You need to select at least one region to add...");
+                return;
 
+            }
 
 
             string[] id = label1.Text.Split('\\');
@@ -322,11 +397,34 @@ namespace HaarObjectMarker
                 line += " " +  listBox1.Items[ _i ].ToString();
     
             }
-
+           
             //MessageBox.Show( line );
             liste.Add ( line ) ;
 
             label2.Text = "Added";
+            this.processed_count += 1 ;
+            this.unprocessed_count -= 1 ;
+
+            label3.Text = "" + processed_count;
+            label4.Text = "" + unprocessed_count;
+
+            StreamWriter temp_file = null ;
+            //In every 20 images we will save the Arraylist for data recovery....
+            if ( liste.Count %20 == 0 )
+            {
+
+                temp_file = new StreamWriter("temp.txt");
+
+                foreach (string lin in liste)
+                    temp_file.WriteLine(lin);
+
+
+                temp_file.Close();
+            }
+
+
+
+
 
 
         }
@@ -383,6 +481,16 @@ namespace HaarObjectMarker
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }
